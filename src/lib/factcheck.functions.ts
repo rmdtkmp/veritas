@@ -104,7 +104,10 @@ const JSON_SCHEMA_HINT = `{
 
 async function callLovableAI(userContent: { role: string; content: unknown }[]) {
   const apiKey = process.env.LOVABLE_API_KEY;
-  if (!apiKey) throw new Error("LOVABLE_API_KEY belum dikonfigurasi");
+  if (!apiKey) {
+    console.error("[factcheck] AI credentials are not configured on the server");
+    throw new Error("Layanan AI tidak tersedia saat ini. Silakan coba lagi nanti.");
+  }
 
   const res = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
     method: "POST",
@@ -123,10 +126,11 @@ async function callLovableAI(userContent: { role: string; content: unknown }[]) 
   });
 
   if (res.status === 429) throw new Error("Terlalu banyak permintaan. Coba lagi sebentar.");
-  if (res.status === 402) throw new Error("Kuota AI habis. Silakan tambah kredit di workspace.");
+  if (res.status === 402) throw new Error("Kuota AI sedang tidak tersedia. Coba lagi nanti.");
   if (!res.ok) {
     const t = await res.text().catch(() => "");
-    throw new Error(`AI gateway error ${res.status}: ${t.slice(0, 200)}`);
+    console.error(`[factcheck] AI gateway error ${res.status}: ${t.slice(0, 500)}`);
+    throw new Error("Layanan AI sedang bermasalah. Silakan coba lagi.");
   }
 
   const data = await res.json();
