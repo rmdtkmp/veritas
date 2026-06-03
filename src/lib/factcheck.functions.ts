@@ -15,8 +15,52 @@ const InputSchema = z.object({
   inputType: z.enum(["text", "url", "image"]),
   content: z.string().min(1).max(20000),
   category: z.string().max(60).optional(),
-  imageDataUrl: z.string().optional(),
+  imageDataUrl: z
+    .string()
+    .regex(/^data:image\/(jpeg|png|webp);base64,/, "Format gambar tidak valid")
+    .max(8_400_000, "Gambar terlalu besar (maks. ~6MB)")
+    .optional(),
 });
+
+// Block SSRF: disallow private/reserved IP ranges and non-https schemes.
+function isPrivateOrReservedHost(hostname: string): boolean {
+  const h = hostname.toLowerCase();
+  if (h === "localhost" || h.endsWith(".localhost") || h.endsWith(".internal") || h.endsWith(".local")) return true;
+
+  // IPv6 quick checks
+  if (h.startsWith("[")) return true; // disallow raw IPv6 literals to be safe
+  if (h === "::1" || h.startsWith("fc") || h.startsWith("fd") || h.startsWith("fe80")) return true;
+
+  // IPv4
+  const m = h.match(/^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/);
+  if (!m) return false;
+  const [a, b] = [Number(m[1]), Number(m[2])];
+  if (a === 10) return true;
+  if (a === 127) return true;
+  if (a === 0) return true;
+  if (a === 169 && b === 254) return true; // link-local / cloud metadata
+  if (a === 172 && b >= 16 && b <= 31) return true;
+  if (a === 192 && b === 168) return true;
+  if (a === 100 && b >= 64 && b <= 127) return true; // CGNAT
+  if (a >= 224) return true; // multicast/reserved
+  return false;
+}
+
+function assertSafeFetchUrl(raw: string): URL {
+  let u: URL;
+  try {
+    u = new URL(raw);
+  } catch {
+    throw new Error("URL tidak valid");
+  }
+  if (u.protocol !== "https:" && u.protocol !== "http:") {
+    throw new Error("Hanya URL http/https yang diizinkan");
+  }
+  if (isPrivateOrReservedHost(u.hostname)) {
+    throw new Error("URL menunjuk ke host internal/terlarang");
+  }
+  return u;
+}
 
 export type FactCheckResult = {
   verdict: (typeof VERDICTS)[number];
@@ -132,11 +176,19 @@ async function runAnalysis(input: z.infer<typeof InputSchema>): Promise<FactChec
       ],
     };
   } else if (input.inputType === "url") {
+    const safeUrl = assertSafeFetchUrl(input.content);
     let fetched = "";
     try {
-      const r = await fetch(input.content, { headers: { "User-Agent": "VeritasAI/1.0" } });
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 8000);
+      const r = await fetch(safeUrl.toString(), {
+        headers: { "User-Agent": "VeritasAI/1.0" },
+        redirect: "manual",
+        signal: controller.signal,
+      });
+      clearTimeout(timeout);
       if (r.ok) {
-        const html = await r.text();
+        const html = (await r.text()).slice(0, 500_000);
         fetched = html
           .replace(/<script[\s\S]*?<\/script>/gi, "")
           .replace(/<style[\s\S]*?<\/style>/gi, "")
