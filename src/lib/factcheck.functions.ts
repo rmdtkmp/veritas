@@ -176,11 +176,19 @@ async function runAnalysis(input: z.infer<typeof InputSchema>): Promise<FactChec
       ],
     };
   } else if (input.inputType === "url") {
+    const safeUrl = assertSafeFetchUrl(input.content);
     let fetched = "";
     try {
-      const r = await fetch(input.content, { headers: { "User-Agent": "VeritasAI/1.0" } });
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 8000);
+      const r = await fetch(safeUrl.toString(), {
+        headers: { "User-Agent": "VeritasAI/1.0" },
+        redirect: "manual",
+        signal: controller.signal,
+      });
+      clearTimeout(timeout);
       if (r.ok) {
-        const html = await r.text();
+        const html = (await r.text()).slice(0, 500_000);
         fetched = html
           .replace(/<script[\s\S]*?<\/script>/gi, "")
           .replace(/<style[\s\S]*?<\/style>/gi, "")
