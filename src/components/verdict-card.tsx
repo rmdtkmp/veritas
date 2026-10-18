@@ -1,3 +1,4 @@
+import { DISCLAIMER } from "@/lib/disclaimer";
 import {
   CheckCircle2,
   AlertTriangle,

@@ -1,3 +1,4 @@
+import { DISCLAIMER } from "@/lib/disclaimer";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { ShieldCheck } from "lucide-react";

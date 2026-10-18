@@ -1,3 +1,4 @@
+import { DISCLAIMER } from "@/lib/disclaimer";
 import { createFileRoute } from "@tanstack/react-router";
 import { ShieldCheck, BookOpen, Sparkles, AlertTriangle } from "lucide-react";
 

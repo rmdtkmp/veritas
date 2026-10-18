@@ -1,3 +1,4 @@
+import { DISCLAIMER } from "@/lib/disclaimer";
 export function SiteFooter() {
   return (
     <footer className="border-t border-border/60 bg-muted/30">
