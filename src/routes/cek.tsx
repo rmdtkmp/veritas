@@ -278,7 +278,7 @@ function CekPage() {
           </Button>
 
           <p className="mt-3 text-center text-xs text-muted-foreground">
-            Hasil ini merupakan analisis AI dan bukan keputusan hukum atau pendapat profesional.
+            {DISCLAIMER}
           </p>
         </div>
 

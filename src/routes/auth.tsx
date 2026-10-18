@@ -181,8 +181,7 @@ function AuthPage() {
       </div>
 
       <p className="mt-4 text-center text-xs text-muted-foreground">
-        Dengan mendaftar, Anda setuju bahwa hasil analisis AI bukan keputusan hukum atau pendapat
-        profesional.
+        Dengan mendaftar, Anda menyetujui ketentuan berikut: {DISCLAIMER}
       </p>
     </div>
   );

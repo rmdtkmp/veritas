@@ -180,8 +180,7 @@ export function VerdictCard({ result }: { result: FactCheckResult }) {
       </div>
 
       <p className="rounded-lg border border-dashed border-border bg-muted/40 p-3 text-xs text-muted-foreground">
-        Hasil ini merupakan analisis AI dan{" "}
-        <strong>bukan keputusan hukum atau pendapat profesional</strong>.
+        {DISCLAIMER}
       </p>
     </div>
   );
