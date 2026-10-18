@@ -9,25 +9,15 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as RiwayatRouteImport } from './routes/riwayat'
-import { Route as PanduanRouteImport } from './routes/panduan'
-import { Route as CekRouteImport } from './routes/cek'
-import { Route as AuthRouteImport } from './routes/auth'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as CekRouteImport } from './routes/cek'
+import { Route as PanduanRouteImport } from './routes/panduan'
+import { Route as RiwayatRouteImport } from './routes/riwayat'
 
-const RiwayatRoute = RiwayatRouteImport.update({
-  id: '/riwayat',
-  path: '/riwayat',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PanduanRoute = PanduanRouteImport.update({
-  id: '/panduan',
-  path: '/panduan',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CekRoute = CekRouteImport.update({
-  id: '/cek',
-  path: '/cek',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRoute = AuthRouteImport.update({
@@ -35,9 +25,19 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const CekRoute = CekRouteImport.update({
+  id: '/cek',
+  path: '/cek',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PanduanRoute = PanduanRouteImport.update({
+  id: '/panduan',
+  path: '/panduan',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RiwayatRoute = RiwayatRouteImport.update({
+  id: '/riwayat',
+  path: '/riwayat',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -81,25 +81,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/riwayat': {
-      id: '/riwayat'
-      path: '/riwayat'
-      fullPath: '/riwayat'
-      preLoaderRoute: typeof RiwayatRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/panduan': {
-      id: '/panduan'
-      path: '/panduan'
-      fullPath: '/panduan'
-      preLoaderRoute: typeof PanduanRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/cek': {
-      id: '/cek'
-      path: '/cek'
-      fullPath: '/cek'
-      preLoaderRoute: typeof CekRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth': {
@@ -109,11 +95,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/cek': {
+      id: '/cek'
+      path: '/cek'
+      fullPath: '/cek'
+      preLoaderRoute: typeof CekRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/panduan': {
+      id: '/panduan'
+      path: '/panduan'
+      fullPath: '/panduan'
+      preLoaderRoute: typeof PanduanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/riwayat': {
+      id: '/riwayat'
+      path: '/riwayat'
+      fullPath: '/riwayat'
+      preLoaderRoute: typeof RiwayatRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
