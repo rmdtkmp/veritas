@@ -25,7 +25,13 @@ const InputSchema = z.object({
 // Block SSRF: disallow private/reserved IP ranges and non-https schemes.
 function isPrivateOrReservedHost(hostname: string): boolean {
   const h = hostname.toLowerCase();
-  if (h === "localhost" || h.endsWith(".localhost") || h.endsWith(".internal") || h.endsWith(".local")) return true;
+  if (
+    h === "localhost" ||
+    h.endsWith(".localhost") ||
+    h.endsWith(".internal") ||
+    h.endsWith(".local")
+  )
+    return true;
 
   // IPv6 quick checks
   if (h.startsWith("[")) return true; // disallow raw IPv6 literals to be safe
@@ -157,11 +163,11 @@ function parseResult(raw: string): FactCheckResult {
     confidence: Math.max(0, Math.min(100, Number(parsed.confidence ?? 50))),
     summary: String(parsed.summary ?? ""),
     category_detected: String(parsed.category_detected ?? "lainnya"),
-    reasoning: Array.isArray(parsed.reasoning) ? (parsed.reasoning as FactCheckResult["reasoning"]) : [],
-    sources: Array.isArray(parsed.sources) ? (parsed.sources as FactCheckResult["sources"]) : [],
-    literacy_tips: Array.isArray(parsed.literacy_tips)
-      ? (parsed.literacy_tips as string[])
+    reasoning: Array.isArray(parsed.reasoning)
+      ? (parsed.reasoning as FactCheckResult["reasoning"])
       : [],
+    sources: Array.isArray(parsed.sources) ? (parsed.sources as FactCheckResult["sources"]) : [],
+    literacy_tips: Array.isArray(parsed.literacy_tips) ? (parsed.literacy_tips as string[]) : [],
   };
 }
 

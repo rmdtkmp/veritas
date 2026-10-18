@@ -79,13 +79,18 @@ function RiwayatPage() {
   const filtered = useMemo(() => {
     return rows.filter((r) => {
       if (verdictFilter !== "all" && r.verdict !== verdictFilter) return false;
-      if (q && !(`${r.input_content} ${r.summary ?? ""}`.toLowerCase().includes(q.toLowerCase()))) return false;
+      if (q && !`${r.input_content} ${r.summary ?? ""}`.toLowerCase().includes(q.toLowerCase()))
+        return false;
       return true;
     });
   }, [rows, q, verdictFilter]);
 
   if (authLoading)
-    return <div className="container mx-auto px-4 py-20 text-center text-muted-foreground">Memuat...</div>;
+    return (
+      <div className="container mx-auto px-4 py-20 text-center text-muted-foreground">
+        Memuat...
+      </div>
+    );
 
   if (!user) {
     return (
@@ -160,7 +165,11 @@ function RiwayatPage() {
                       </Badge>
                       <span className="text-xs text-muted-foreground">{r.confidence}%</span>
                       <span className="text-xs text-muted-foreground">
-                        · {new Date(r.created_at).toLocaleString("id-ID", { dateStyle: "medium", timeStyle: "short" })}
+                        ·{" "}
+                        {new Date(r.created_at).toLocaleString("id-ID", {
+                          dateStyle: "medium",
+                          timeStyle: "short",
+                        })}
                       </span>
                     </div>
                     <p className="mt-2 line-clamp-2 text-sm">{r.summary || r.input_content}</p>

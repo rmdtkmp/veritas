@@ -40,7 +40,9 @@ export function LoadingSteps() {
               >
                 <Icon className={`h-4 w-4 ${current ? "animate-pulse" : ""}`} />
               </span>
-              <span className={done || current ? "text-foreground" : "text-muted-foreground"}>{s.label}</span>
+              <span className={done || current ? "text-foreground" : "text-muted-foreground"}>
+                {s.label}
+              </span>
             </li>
           );
         })}

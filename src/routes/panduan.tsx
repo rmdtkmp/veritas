@@ -48,11 +48,23 @@ function Panduan() {
       <Section icon={BookOpen} title="Jenis verdict">
         <ul className="grid gap-3 sm:grid-cols-2">
           <Verdict label="BENAR" desc="Klaim didukung bukti yang memadai." tone="success" />
-          <Verdict label="MENYESATKAN" desc="Ada unsur fakta, tetapi disajikan menyesatkan." tone="warning" />
+          <Verdict
+            label="MENYESATKAN"
+            desc="Ada unsur fakta, tetapi disajikan menyesatkan."
+            tone="warning"
+          />
           <Verdict label="HOAKS" desc="Klaim palsu atau dibuat-buat." tone="destructive" />
           <Verdict label="FITNAH" desc="Tuduhan tanpa bukti yang merugikan." tone="destructive" />
-          <Verdict label="UJARAN KEBENCIAN" desc="Mengandung kebencian terhadap kelompok tertentu." tone="destructive" />
-          <Verdict label="TIDAK TERVERIFIKASI" desc="Bukti belum cukup untuk menarik kesimpulan." tone="muted" />
+          <Verdict
+            label="UJARAN KEBENCIAN"
+            desc="Mengandung kebencian terhadap kelompok tertentu."
+            tone="destructive"
+          />
+          <Verdict
+            label="TIDAK TERVERIFIKASI"
+            desc="Bukti belum cukup untuk menarik kesimpulan."
+            tone="muted"
+          />
         </ul>
       </Section>
 
@@ -68,10 +80,18 @@ function Panduan() {
 
       <Section icon={BookOpen} title="Tips literasi cepat">
         <ul className="space-y-2">
-          <li>• Periksa <strong>sumber asli</strong> sebelum membagikan ulang.</li>
-          <li>• Cek <strong>tanggal</strong> — berita lama sering didaur ulang sebagai baru.</li>
-          <li>• Perhatikan <strong>konteks utuh</strong>, bukan hanya potongan kutipan.</li>
-          <li>• Cari <strong>setidaknya dua rujukan</strong> independen.</li>
+          <li>
+            • Periksa <strong>sumber asli</strong> sebelum membagikan ulang.
+          </li>
+          <li>
+            • Cek <strong>tanggal</strong> — berita lama sering didaur ulang sebagai baru.
+          </li>
+          <li>
+            • Perhatikan <strong>konteks utuh</strong>, bukan hanya potongan kutipan.
+          </li>
+          <li>
+            • Cari <strong>setidaknya dua rujukan</strong> independen.
+          </li>
           <li>• Hati-hati pada konten yang memancing emosi kuat secara berlebihan.</li>
         </ul>
       </Section>

@@ -32,7 +32,9 @@ export function SiteHeader() {
           </span>
           <span className="flex flex-col leading-tight">
             <span className="text-sm font-semibold">VERITAS AI</span>
-            <span className="text-[10px] uppercase tracking-wider text-muted-foreground">DFK Versi 1.0</span>
+            <span className="text-[10px] uppercase tracking-wider text-muted-foreground">
+              DFK Versi 1.0
+            </span>
           </span>
         </Link>
 
