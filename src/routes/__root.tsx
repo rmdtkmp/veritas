@@ -1,4 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import type { ErrorComponentProps } from "@tanstack/react-router";
 import {
   Outlet,
   Link,
@@ -36,14 +37,16 @@ function NotFoundComponent() {
   );
 }
 
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+function ErrorComponent({ error, reset }: ErrorComponentProps) {
   console.error(error);
   const router = useRouter();
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-xl font-semibold">Halaman gagal dimuat</h1>
-        <p className="mt-2 text-sm text-muted-foreground">Terjadi kesalahan saat memuat halaman. Silakan coba lagi.</p>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Terjadi kesalahan saat memuat halaman. Silakan coba lagi.
+        </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
             onClick={() => {
@@ -77,19 +80,45 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "Verifikasi berita, foto, dan teks dari media daring secara otomatis dengan AI. Deteksi disinformasi, fitnah, dan ujaran kebencian.",
       },
-      { property: "og:title", content: "VERITAS AI | DFK Versi 1.0 — Asisten Cek Fakta Berbasis AI" },
+      {
+        property: "og:title",
+        content: "VERITAS AI | DFK Versi 1.0 — Asisten Cek Fakta Berbasis AI",
+      },
       {
         property: "og:description",
         content: "Asisten AI untuk memeriksa fakta berita, foto, dan teks berbahasa Indonesia.",
       },
       { property: "og:type", content: "website" },
       { name: "theme-color", content: "#2b6cf6" },
-      { name: "twitter:title", content: "VERITAS AI | DFK Versi 1.0 — Asisten Cek Fakta Berbasis AI" },
-      { name: "description", content: "Aplikasi asisten AI untuk memverifikasi konten disinformasi, fitnah, dan kebencian. Cocok untuk murid, guru, dan kita semua." },
-      { property: "og:description", content: "Aplikasi asisten AI untuk memverifikasi konten disinformasi, fitnah, dan kebencian. Cocok untuk murid, guru, dan kita semua." },
-      { name: "twitter:description", content: "Aplikasi asisten AI untuk memverifikasi konten disinformasi, fitnah, dan kebencian. Cocok untuk murid, guru, dan kita semua." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/7rAj9s8MzDbxZbPHSBw7aRGCfD43/social-images/social-1779253852638-Puspa_komdigi-jukebox-bg-removed.webp" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/7rAj9s8MzDbxZbPHSBw7aRGCfD43/social-images/social-1779253852638-Puspa_komdigi-jukebox-bg-removed.webp" },
+      {
+        name: "twitter:title",
+        content: "VERITAS AI | DFK Versi 1.0 — Asisten Cek Fakta Berbasis AI",
+      },
+      {
+        name: "description",
+        content:
+          "Aplikasi asisten AI untuk memverifikasi konten disinformasi, fitnah, dan kebencian. Cocok untuk murid, guru, dan kita semua.",
+      },
+      {
+        property: "og:description",
+        content:
+          "Aplikasi asisten AI untuk memverifikasi konten disinformasi, fitnah, dan kebencian. Cocok untuk murid, guru, dan kita semua.",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "Aplikasi asisten AI untuk memverifikasi konten disinformasi, fitnah, dan kebencian. Cocok untuk murid, guru, dan kita semua.",
+      },
+      {
+        property: "og:image",
+        content:
+          "https://storage.googleapis.com/gpt-engineer-file-uploads/7rAj9s8MzDbxZbPHSBw7aRGCfD43/social-images/social-1779253852638-Puspa_komdigi-jukebox-bg-removed.webp",
+      },
+      {
+        name: "twitter:image",
+        content:
+          "https://storage.googleapis.com/gpt-engineer-file-uploads/7rAj9s8MzDbxZbPHSBw7aRGCfD43/social-images/social-1779253852638-Puspa_komdigi-jukebox-bg-removed.webp",
+      },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [

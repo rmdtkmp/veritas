@@ -1,4 +1,12 @@
-import { CheckCircle2, AlertTriangle, XCircle, Scale, Flame, HelpCircle, Share2 } from "lucide-react";
+import {
+  CheckCircle2,
+  AlertTriangle,
+  XCircle,
+  Scale,
+  Flame,
+  HelpCircle,
+  Share2,
+} from "lucide-react";
 import type { FactCheckResult } from "@/lib/factcheck.functions";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -15,12 +23,42 @@ const VERDICT_META: Record<
   FactCheckResult["verdict"],
   { label: string; tone: string; icon: React.ComponentType<{ className?: string }>; desc: string }
 > = {
-  BENAR: { label: "BENAR", tone: "bg-success/15 text-success border-success/30", icon: CheckCircle2, desc: "Klaim didukung bukti yang memadai." },
-  MENYESATKAN: { label: "MENYESATKAN", tone: "bg-warning/15 text-warning-foreground border-warning/40", icon: AlertTriangle, desc: "Ada unsur fakta, tetapi disajikan menyesatkan." },
-  HOAKS: { label: "HOAKS", tone: "bg-destructive/15 text-destructive border-destructive/30", icon: XCircle, desc: "Klaim palsu atau dibuat-buat." },
-  FITNAH: { label: "FITNAH", tone: "bg-destructive/15 text-destructive border-destructive/30", icon: Scale, desc: "Tuduhan tanpa bukti yang merugikan pihak tertentu." },
-  "UJARAN KEBENCIAN": { label: "UJARAN KEBENCIAN", tone: "bg-destructive/15 text-destructive border-destructive/30", icon: Flame, desc: "Mengandung kebencian terhadap kelompok tertentu." },
-  "TIDAK TERVERIFIKASI": { label: "TIDAK TERVERIFIKASI", tone: "bg-muted text-muted-foreground border-border", icon: HelpCircle, desc: "Bukti belum cukup untuk menarik kesimpulan." },
+  BENAR: {
+    label: "BENAR",
+    tone: "bg-success/15 text-success border-success/30",
+    icon: CheckCircle2,
+    desc: "Klaim didukung bukti yang memadai.",
+  },
+  MENYESATKAN: {
+    label: "MENYESATKAN",
+    tone: "bg-warning/15 text-warning-foreground border-warning/40",
+    icon: AlertTriangle,
+    desc: "Ada unsur fakta, tetapi disajikan menyesatkan.",
+  },
+  HOAKS: {
+    label: "HOAKS",
+    tone: "bg-destructive/15 text-destructive border-destructive/30",
+    icon: XCircle,
+    desc: "Klaim palsu atau dibuat-buat.",
+  },
+  FITNAH: {
+    label: "FITNAH",
+    tone: "bg-destructive/15 text-destructive border-destructive/30",
+    icon: Scale,
+    desc: "Tuduhan tanpa bukti yang merugikan pihak tertentu.",
+  },
+  "UJARAN KEBENCIAN": {
+    label: "UJARAN KEBENCIAN",
+    tone: "bg-destructive/15 text-destructive border-destructive/30",
+    icon: Flame,
+    desc: "Mengandung kebencian terhadap kelompok tertentu.",
+  },
+  "TIDAK TERVERIFIKASI": {
+    label: "TIDAK TERVERIFIKASI",
+    tone: "bg-muted text-muted-foreground border-border",
+    icon: HelpCircle,
+    desc: "Bukti belum cukup untuk menarik kesimpulan.",
+  },
 };
 
 export function VerdictCard({ result }: { result: FactCheckResult }) {
@@ -49,7 +87,9 @@ export function VerdictCard({ result }: { result: FactCheckResult }) {
           </div>
           <div className="flex-1">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="text-xs font-semibold uppercase tracking-wider opacity-70">Verdict</span>
+              <span className="text-xs font-semibold uppercase tracking-wider opacity-70">
+                Verdict
+              </span>
               <h3 className="text-2xl font-bold">{meta.label}</h3>
             </div>
             <p className="mt-1 text-sm opacity-80">{meta.desc}</p>
@@ -83,7 +123,9 @@ export function VerdictCard({ result }: { result: FactCheckResult }) {
               <AccordionTrigger className="text-sm">
                 <span className="text-muted-foreground">{i + 1}.</span>&nbsp;{r.step}
               </AccordionTrigger>
-              <AccordionContent className="text-sm text-muted-foreground">{r.detail}</AccordionContent>
+              <AccordionContent className="text-sm text-muted-foreground">
+                {r.detail}
+              </AccordionContent>
             </AccordionItem>
           ))}
           {result.reasoning.length === 0 && (
@@ -95,11 +137,16 @@ export function VerdictCard({ result }: { result: FactCheckResult }) {
       <div className="rounded-2xl border border-border bg-card p-6 shadow-soft">
         <h4 className="mb-3 text-sm font-semibold">Sumber Rujukan</h4>
         {result.sources.length === 0 ? (
-          <p className="text-sm text-muted-foreground">Belum ada sumber spesifik yang dapat dirujuk.</p>
+          <p className="text-sm text-muted-foreground">
+            Belum ada sumber spesifik yang dapat dirujuk.
+          </p>
         ) : (
           <ul className="space-y-3">
             {result.sources.map((s, i) => (
-              <li key={i} className="flex flex-col gap-1 rounded-lg border border-border/60 bg-background/50 p-3">
+              <li
+                key={i}
+                className="flex flex-col gap-1 rounded-lg border border-border/60 bg-background/50 p-3"
+              >
                 <a
                   href={s.url}
                   target="_blank"
@@ -125,13 +172,16 @@ export function VerdictCard({ result }: { result: FactCheckResult }) {
             </li>
           ))}
           {result.literacy_tips.length === 0 && (
-            <li className="text-sm text-muted-foreground">Selalu periksa sumber asli, tanggal, dan konteks lengkap sebelum membagikan.</li>
+            <li className="text-sm text-muted-foreground">
+              Selalu periksa sumber asli, tanggal, dan konteks lengkap sebelum membagikan.
+            </li>
           )}
         </ul>
       </div>
 
       <p className="rounded-lg border border-dashed border-border bg-muted/40 p-3 text-xs text-muted-foreground">
-        Hasil ini merupakan analisis AI dan <strong>bukan keputusan hukum atau pendapat profesional</strong>.
+        Hasil ini merupakan analisis AI dan{" "}
+        <strong>bukan keputusan hukum atau pendapat profesional</strong>.
       </p>
     </div>
   );

@@ -48,8 +48,8 @@ function Landing() {
               Sabar sebelum sebar.
             </h1>
             <p className="mx-auto mt-5 max-w-2xl text-pretty text-base text-muted-foreground md:text-lg">
-              Verifikasi berita, foto, dan teks dari media daring secara otomatis dengan AI.
-              Cocok untuk pelajar, mahasiswa, guru, dosen, orang tua, dan masyarakat umum.
+              Verifikasi berita, foto, dan teks dari media daring secara otomatis dengan AI. Cocok
+              untuk pelajar, mahasiswa, guru, dosen, orang tua, dan masyarakat umum.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
@@ -65,7 +65,8 @@ function Landing() {
             </div>
 
             <p className="mt-6 text-xs text-muted-foreground">
-              Tanpa akun: 3 pemeriksaan/hari. Daftar gratis untuk akses tak terbatas dan riwayat tersimpan.
+              Tanpa akun: 3 pemeriksaan/hari. Daftar gratis untuk akses tak terbatas dan riwayat
+              tersimpan.
             </p>
           </div>
 
@@ -85,7 +86,9 @@ function Landing() {
                   </p>
                 </div>
                 <div className="rounded-2xl border border-warning/40 bg-warning/10 p-5">
-                  <span className="text-xs font-semibold uppercase tracking-wider opacity-70">Verdict</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider opacity-70">
+                    Verdict
+                  </span>
                   <h4 className="mt-1 text-2xl font-bold">MENYESATKAN</h4>
                   <p className="mt-2 text-sm text-foreground/80">
                     Wacana ada, namun tidak ada keputusan resmi seperti yang diklaim.
@@ -104,9 +107,12 @@ function Landing() {
       {/* Features */}
       <section className="container mx-auto px-4 py-16">
         <div className="mx-auto mb-12 max-w-2xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight md:text-4xl">Apa yang bisa dideteksi?</h2>
+          <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
+            Apa yang bisa dideteksi?
+          </h2>
           <p className="mt-3 text-muted-foreground">
-            VERITAS AI dilatih untuk mengenali berbagai bentuk konten bermasalah yang umum beredar di Indonesia.
+            VERITAS AI dilatih untuk mengenali berbagai bentuk konten bermasalah yang umum beredar
+            di Indonesia.
           </p>
         </div>
 
@@ -134,12 +140,29 @@ function Landing() {
         <div className="container mx-auto px-4">
           <div className="mx-auto mb-12 max-w-2xl text-center">
             <h2 className="text-3xl font-bold tracking-tight md:text-4xl">Cara kerjanya</h2>
-            <p className="mt-3 text-muted-foreground">Tiga langkah sederhana, hasil yang transparan.</p>
+            <p className="mt-3 text-muted-foreground">
+              Tiga langkah sederhana, hasil yang transparan.
+            </p>
           </div>
           <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-3">
-            <StepCard num="01" icon={Eye} title="Tempel konten" desc="Salin teks, URL artikel, atau unggah tangkapan layar." />
-            <StepCard num="02" icon={Brain} title="AI menganalisis" desc="Ekstraksi klaim, perbandingan rujukan, klasifikasi risiko." />
-            <StepCard num="03" icon={BookOpen} title="Hasil transparan" desc="Verdict, skor kepercayaan, sumber, dan tips literasi." />
+            <StepCard
+              num="01"
+              icon={Eye}
+              title="Tempel konten"
+              desc="Salin teks, URL artikel, atau unggah tangkapan layar."
+            />
+            <StepCard
+              num="02"
+              icon={Brain}
+              title="AI menganalisis"
+              desc="Ekstraksi klaim, perbandingan rujukan, klasifikasi risiko."
+            />
+            <StepCard
+              num="03"
+              icon={BookOpen}
+              title="Hasil transparan"
+              desc="Verdict, skor kepercayaan, sumber, dan tips literasi."
+            />
           </div>
         </div>
       </section>
@@ -148,7 +171,9 @@ function Landing() {
       <section className="container mx-auto px-4 py-20">
         <div className="overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-primary to-info p-10 text-center text-primary-foreground shadow-elevated md:p-14">
           <ShieldCheck className="mx-auto h-10 w-10 opacity-90" />
-          <h2 className="mt-4 text-3xl font-bold md:text-4xl">Jangan ikut menyebar yang belum tentu benar.</h2>
+          <h2 className="mt-4 text-3xl font-bold md:text-4xl">
+            Jangan ikut menyebar yang belum tentu benar.
+          </h2>
           <p className="mx-auto mt-3 max-w-xl text-primary-foreground/85">
             Cek dulu dengan VERITAS AI sebelum membagikan ke grup keluarga atau media sosial.
           </p>

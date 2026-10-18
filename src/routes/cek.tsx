@@ -6,12 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Select,
   SelectContent,
@@ -19,7 +14,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { runGuestFactCheck, runUserFactCheck, type FactCheckResult } from "@/lib/factcheck.functions";
+import {
+  runGuestFactCheck,
+  runUserFactCheck,
+  type FactCheckResult,
+} from "@/lib/factcheck.functions";
 import { LoadingSteps } from "@/components/loading-steps";
 import { VerdictCard } from "@/components/verdict-card";
 import { useAuth } from "@/lib/auth-context";
@@ -90,7 +89,12 @@ function CekPage() {
   };
 
   const submit = async () => {
-    let payload: { inputType: "text" | "url" | "image"; content: string; category?: string; imageDataUrl?: string };
+    let payload: {
+      inputType: "text" | "url" | "image";
+      content: string;
+      category?: string;
+      imageDataUrl?: string;
+    };
 
     if (tab === "text") {
       if (text.trim().length < 8) return toast.error("Masukkan teks minimal 8 karakter.");
@@ -116,7 +120,9 @@ function CekPage() {
       const key = todayKey();
       const used = Number(localStorage.getItem(key) ?? "0");
       if (used >= GUEST_LIMIT) {
-        toast.error("Batas 3 pemeriksaan/hari untuk tamu tercapai. Silakan masuk untuk akses tak terbatas.");
+        toast.error(
+          "Batas 3 pemeriksaan/hari untuk tamu tercapai. Silakan masuk untuk akses tak terbatas.",
+        );
         return;
       }
       localStorage.setItem(key, String(used + 1));
@@ -141,7 +147,8 @@ function CekPage() {
       <div className="mx-auto mb-8 max-w-4xl">
         <h1 className="text-3xl font-bold tracking-tight md:text-4xl">Cek Fakta</h1>
         <p className="mt-2 text-muted-foreground">
-          Tempel teks, URL artikel, atau unggah tangkapan layar. AI akan memeriksa dan memberikan verdict yang transparan.
+          Tempel teks, URL artikel, atau unggah tangkapan layar. AI akan memeriksa dan memberikan
+          verdict yang transparan.
         </p>
         {!user && (
           <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-info/30 bg-info/10 p-3 text-sm">
@@ -160,9 +167,18 @@ function CekPage() {
         <div className="rounded-2xl border border-border bg-card p-6 shadow-soft">
           <Tabs value={tab} onValueChange={(v) => setTab(v as typeof tab)}>
             <TabsList className="grid w-full grid-cols-3">
-              <TabsTrigger value="text"><FileText className="mr-1.5 h-4 w-4" />Teks</TabsTrigger>
-              <TabsTrigger value="url"><Link2 className="mr-1.5 h-4 w-4" />URL</TabsTrigger>
-              <TabsTrigger value="image"><Upload className="mr-1.5 h-4 w-4" />Gambar</TabsTrigger>
+              <TabsTrigger value="text">
+                <FileText className="mr-1.5 h-4 w-4" />
+                Teks
+              </TabsTrigger>
+              <TabsTrigger value="url">
+                <Link2 className="mr-1.5 h-4 w-4" />
+                URL
+              </TabsTrigger>
+              <TabsTrigger value="image">
+                <Upload className="mr-1.5 h-4 w-4" />
+                Gambar
+              </TabsTrigger>
             </TabsList>
 
             <TabsContent value="text" className="mt-4 space-y-3">
@@ -278,7 +294,8 @@ function CekPage() {
                 </div>
                 <h3 className="mt-4 text-lg font-semibold">Hasil akan muncul di sini</h3>
                 <p className="mt-2 max-w-sm text-sm text-muted-foreground">
-                  Mulai dengan menempel konten di sebelah kiri, lalu klik <strong>Cek Berita Sekarang</strong>.
+                  Mulai dengan menempel konten di sebelah kiri, lalu klik{" "}
+                  <strong>Cek Berita Sekarang</strong>.
                 </p>
               </div>
             </div>
