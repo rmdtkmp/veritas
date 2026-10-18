@@ -1,3 +1,4 @@
+import { DISCLAIMER } from "@/lib/disclaimer";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { ShieldCheck } from "lucide-react";
@@ -181,8 +182,7 @@ function AuthPage() {
       </div>
 
       <p className="mt-4 text-center text-xs text-muted-foreground">
-        Dengan mendaftar, Anda setuju bahwa hasil analisis AI bukan keputusan hukum atau pendapat
-        profesional.
+        Dengan mendaftar, Anda menyetujui ketentuan berikut: {DISCLAIMER}
       </p>
     </div>
   );

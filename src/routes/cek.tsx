@@ -1,3 +1,4 @@
+import { DISCLAIMER } from "@/lib/disclaimer";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useState } from "react";
@@ -278,7 +279,7 @@ function CekPage() {
           </Button>
 
           <p className="mt-3 text-center text-xs text-muted-foreground">
-            Hasil ini merupakan analisis AI dan bukan keputusan hukum atau pendapat profesional.
+            {DISCLAIMER}
           </p>
         </div>
 

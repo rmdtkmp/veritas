@@ -1,3 +1,4 @@
+import { DISCLAIMER } from "@/lib/disclaimer";
 import { createFileRoute } from "@tanstack/react-router";
 import { ShieldCheck, BookOpen, Sparkles, AlertTriangle } from "lucide-react";
 
@@ -99,9 +100,7 @@ function Panduan() {
       <div className="mt-10 flex items-start gap-3 rounded-2xl border border-warning/40 bg-warning/10 p-5 text-sm">
         <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-warning-foreground" />
         <p>
-          <strong>Disclaimer:</strong> Hasil VERITAS AI merupakan analisis AI dan{" "}
-          <strong>bukan keputusan hukum atau pendapat profesional</strong>. Gunakan sebagai alat
-          bantu literasi, bukan satu-satunya dasar pengambilan keputusan.
+          <strong>Disclaimer:</strong> {DISCLAIMER}
         </p>
       </div>
     </div>
